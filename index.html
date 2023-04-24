@@ -28,11 +28,18 @@
         <div class="card">
 
             <div class="card-header bg-info text-white">
-                <i class="fas fa-arrows-alt-h"></i>
-                <strong id="distance">1.000</strong>
-                km
-            </div>
+                <form id="distance_form">
+                    <label for="distance_input"><i class="fas fa-arrows-alt-h"></i> distance to travel</label>
+                    <div class="input-group mb-2 mr-sm-2 input-group-sm">
+                        <input type="number" class="form-control" id="distance_input" value="1000">
+                        <div class="input-group-append">
+                            <div class="input-group-text">km</div>
+                        </div>
 
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-dark btn-sm">Submit</button>
+                </form>
+            </div>
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -88,16 +95,20 @@
         }
     }
 
-    var urlParams = new URLSearchParams(window.location.search);
-    let distance = parseInt(urlParams.get('distance'));
+    $("#distance_form").on("submit", function (event) {
 
-    if (Number.isInteger(distance)) {
-        $("#distance").text(distance);
-        $("#plane").text(pretty_round(distance * 0.589));
-        $("#car").text(pretty_round(distance * 0.224));
-        $("#bus").text(pretty_round(distance * 0.032));
-        $("#train").text(pretty_round(distance * 0.004));
-    }
+        let distance = parseInt($("#distance_input").val());
+
+        if (Number.isInteger(distance)) {
+            $("#plane").text(pretty_round(distance * 0.589));
+            $("#car").text(pretty_round(distance * 0.224));
+            $("#bus").text(pretty_round(distance * 0.032));
+            $("#train").text(pretty_round(distance * 0.004));
+        }
+
+        event.preventDefault();
+    });
+
 
 </script>
 
