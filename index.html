@@ -46,7 +46,6 @@
                     <i class="fas fa-plane"></i>
                     <span class="badge badge-info badge-pill">
                         <span id="plane">589</span>
-                        kg
                     </span>
                     by plane
                 </li>
@@ -55,7 +54,6 @@
                     <i class="fas fa-car"></i>
                     <span class="badge badge-info badge-pill">
                         <span id="car">224</span>
-                            kg
                     </span>
                     by car
                 </li>
@@ -64,7 +62,6 @@
                     <i class="fas fa-bus"></i>
                     <span class="badge badge-info badge-pill">
                         <span id="bus">32</span>
-                        kg
                     </span>
                     by bus
                 </li>
@@ -73,7 +70,6 @@
                     <i class="fas fa-subway"></i>
                     <span class="badge badge-info badge-pill">
                         <span id="train">4</span>
-                            kg
                     </span>
                     by train
                 </li>
@@ -86,12 +82,16 @@
 <script>
 
     function pretty_round(number) {
-        if (number > 100) {
-            return Math.floor(number);
+        if (number > 10_000) {
+            return (Math.floor(number / 100) / 10).toFixed(1) + " tons";
+        } else if (number > 1000) {
+            return (Math.floor(number/10)/100).toFixed(2) + " tons";
+        } else if (number > 100) {
+            return Math.floor(number) + " kg";
         } else if (number > 10) {
-            return number.toFixed(1);
+            return number.toFixed(1) + " kg";
         } else {
-            return number.toFixed(2);
+            return number.toFixed(2) + " kg";
         }
     }
 
@@ -108,6 +108,8 @@
 
         event.preventDefault();
     });
+
+    $("#distance_form").submit();
 
 
 </script>
