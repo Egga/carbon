@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Carbon</title>
+    <script src="https://kit.fontawesome.com/868b578543.js" crossorigin="anonymous"></script>
+    <style>
+        html {
+            font-size: 1.3rem;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="row justify-content-center">
+    <div style="width: 10rem;">
+
+        <h1>
+            <i class="fas fa-balance-scale-right"></i> CO&sup2;
+        </h1>
+        <div id="results"></div>
+
+        <div class="card">
+
+            <div class="card-header bg-info text-white">
+                <i class="fas fa-arrows-alt-h"></i>
+                <strong id="distance">1.000</strong>
+                km
+            </div>
+
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <i class="fas fa-plane"></i>
+                    <span class="badge badge-info badge-pill">
+                        <span id="plane">589</span>
+                        kg
+                    </span>
+                </li>
+
+                <li class="list-group-item">
+                    <i class="fas fa-car"></i>
+                    <span class="badge badge-info badge-pill">
+                        <span id="car">224</span>
+                            kg
+                    </span>
+                </li>
+
+                <li class="list-group-item">
+                    <i class="fas fa-bus"></i>
+                    <span class="badge badge-info badge-pill">
+                        <span id="bus">32</span>
+                        kg
+                    </span>
+                </li>
+
+                <li class="list-group-item">
+                    <i class="fas fa-subway"></i>
+                    <span class="badge badge-info badge-pill">
+                        <span id="train">4</span>
+                            kg
+                    </span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function pretty_round(number) {
+        if (number > 100) {
+            return Math.floor(number);
+        } else if (number > 10) {
+            return number.toFixed(1);
+        } else {
+            return number.toFixed(2);
+        }
+    }
+
+    var urlParams = new URLSearchParams(window.location.search);
+    let distance = parseInt(urlParams.get('distance'));
+
+    if (Number.isInteger(distance)) {
+        $("#distance").text(distance);
+        $("#plane").text(pretty_round(distance * 0.589));
+        $("#car").text(pretty_round(distance * 0.224));
+        $("#bus").text(pretty_round(distance * 0.032));
+        $("#train").text(pretty_round(distance * 0.004));
+    }
+
+</script>
+
+</body>
+</html>
